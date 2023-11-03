@@ -16,7 +16,7 @@ I choose RStudio Global 2022 Conference Talks and watched Developing Internal To
 
 ## 
 
-## (b) What strategies can we use to make developing tool simultaneously with Python and R easier? 
+## (b) What strategies can we use to make developing tool simultaneously with Python and R easier?
 
 Idea #1 Building identical generic functions
 
@@ -45,3 +45,37 @@ say_hello.default \<- function(x) {
 print("Hello there!")
 
 }
+
+in Python
+
+def say_hello(x)
+
+return"Hello there!"
+
+Idea #2 Identical error handling with classes
+
+in Python
+
+try:
+
+#some code goes here
+
+except FileNotFoundError:
+
+#code to handle FileNotFoundError
+
+in R
+
+stop("This throws an error!")
+
+#\> Error: This throws an error
+
+rlang::abort("This throws an error!")
+
+#\> Error:
+
+#\>! This throws an error!
+
+Idea #3 Creating your own internal wrappers
+
+Calling Python from R
