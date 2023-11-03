@@ -5,7 +5,7 @@ sidebar: false
 
 # Education
 
--   B.S., Industrial Engineering, Hacettepe University, Turkey, 20xx - ongoing.
+-   B.S., Industrial Engineering, Hacettepe University, Turkey, 2020 - ongoing.
 
 # Work Experience
 
@@ -17,7 +17,7 @@ sidebar: false
 
 ## Internships
 
-1.  Firm aaa, position xx, year xxx
+1.  Firm KORTEKS, position Production Planning Intern, year 2023
 
 2.  Firm bbb, position yyy, year yyy
 
@@ -25,6 +25,8 @@ sidebar: false
 
 # Competencies
 
-R, Quarto, Git, Python
+R, Quarto, Git, Python, Canva, AUTOCAD, Microsoft Programs
 
 # Hobbies
+
+Traveling, Doing Yoga
