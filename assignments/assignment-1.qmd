@@ -10,6 +10,38 @@ title: "Assignment 1"
 
 My first assignment has two parts.
 
-## (a)
+## (a) Summary
 
-## (b)
+I choose RStudio Global 2022 Conference Talks and watched Developing Internal Tools for Multi-Lingual Teams. He gives examples about this subject using R and Python in Bumble application.
+
+## 
+
+## (b) What strategies can we use to make developing tool simultaneously with Python and R easier? 
+
+Idea #1 Building identical generic functions
+
+print()
+
+summary()
+
+broom::tidy()
+
+in R
+
+say_hello \<- function(x) {
+
+UseMethod("say_hello")
+
+}
+
+say_hello.data.frame \<- function(x) {
+
+print("Hello dataframe!")
+
+}
+
+say_hello.default \<- function(x) {
+
+print("Hello there!")
+
+}
