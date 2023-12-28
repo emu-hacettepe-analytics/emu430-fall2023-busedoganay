@@ -5,5 +5,88 @@ title: "Assignment 2"
 # Assignment 2
 
 ```{r}
-1 + 1
+library(tidyverse)
+library(rvest)
+library(ggplot2)
+imdb_2010_2023 <- "https://m.imdb.com/search/title/?title_type=feature&release_date=2010-01-01,2023-12-31&num_votes=2500,&country_of_origin=TR&count=250"
+imdb_2010 <- "https://m.imdb.com/search/title/?title_type=feature&release_date=,2009-12-31&num_votes=2500,&country_of_origin=TR&count=250"
+r_imdb <- read_html(imdb_2010_2023)
+r_imdb_before <- read_html(imdb_2010)
+title_names <- r_imdb |> html_nodes('.ipc-title__text')
+title_names <- html_text(title_names)
+title_names <- tail(head(title_names,-1),-1)
+title_names <- str_split(title_names, " ", n=2)
+title_names <- unlist(lapply(title_names, function(x) {x[2]}))
+
+duration <- r_imdb|> html_nodes('.dli-title-metadata-item:nth-child(2)')
+duration <- html_text(duration)
+duration <- sapply(str_extract_all(duration, "\\d+"), function(x) {
+  x1 <- as.numeric(x)
+  if(length(x1)>1) x1[1]*60 + x1[2] else x1 })
+
+
+year <- r_imdb |> html_nodes('.dli-title-metadata-item:nth-child(1)')
+year <- html_text(year)
+year <- as.numeric(year)
+
+
+vote <- r_imdb|> html_nodes('.kRnqtn')
+vote <- html_text(vote)
+vote <- parse_number(vote)
+
+
+rating <- r_imdb|> html_nodes('.ratingGroup--imdb-rating')
+rating <- html_text(rating)
+rating <- as.numeric(substr(rating,1,3))
+
+
+
+
+title <- r_imdb_before |> html_nodes('.ipc-title__text')
+title <- html_text(title)
+title <- tail(head(title,-1),-1)
+title <- str_split(title, " ", n=2)
+title <- unlist(lapply(title_names_b, function(x) {x[2]}))
+
+year_before <- r_imdb_before |> html_nodes('.dli-title-metadata-item:nth-child(1)')
+year_before <- html_text(year_before)
+year_before <- as.numeric(year_before)
+
+duration_before <- r_imdb_before |> html_nodes('.dli-title-metadata-item:nth-child(2)')
+duration_before <- html_text(duration_before)
+duration_before <- sapply(str_extract_all(duration_before, "\\d+"), function(x) {
+  x1 <- as.numeric(x)
+  if(length(x1)>1) x1[1]*60 + x1[2] else x1 })
+
+
+rating_before <- r_imdb_before |> html_nodes('.ratingGroup--imdb-rating')
+rating_before <- html_text(rating_before)
+rating_before <- as.numeric(substr(rating_before,1,3))
+
+
+vote_before <- r_imdb_before |> html_nodes('.kRnqtn')
+vote_before <- html_text(vote_before)
+vote_before <- parse_number(vote_before)
+
+frame_imdb <- data.frame(
+  Title = title_names,
+  Year = year,
+  Duration = duration,
+  Rating = rating,
+  Votes = vote
+)
+frame_imdb_before <- data.frame(
+  Title=title,
+  Year=year_before,
+  Duration=duration_before,
+  Rating = rating_before,
+  Votes=vote_before
+)
+turkish_movies <- bind_rows(frame_imdb,frame_imdb_before)
+
+ordering <- turkish_movies %>% arrange(desc(Rating))
+
+worst <- head(ordering, 5)
+best <- tail(ordering, 5)
+wb <- rbind(worst, best)
 ```
