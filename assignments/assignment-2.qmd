@@ -90,7 +90,7 @@ worst <- head(ordering, 5)
 best <- tail(ordering, 5)
 wb <- rbind(worst, best)
 
-I watched Hababam Sinifi and CM101MMXI. I think they both are good movies but I don't like Turkish comedy movies very much so I'm not interested in CM101MMXI. I haven't watched any of the bottom 5 Turkish movies so I can't comment so much about these movies.
+
 
 #Fav movie
 fav_movie <- "7. Kogustaki Mucize" 
@@ -149,4 +149,7 @@ ex_new <- inner_join(tr_df, turkish_movies, by = c("Title" = "Title", "Year" = "
 sorted <- ex_new %>% arrange(desc(Rating))
 
 ```
+
+I watched Hababam Sinifi and CM101MMXI. I think they both are good movies but I don't like Turkish comedy movies very much so I'm not interested in CM101MMXI. I haven't watched any of the bottom 5 Turkish movies so I can't comment so much about these movies.
+
 They are not same movies. Maybe IMDB list it differently, it may take different situations into consideration.
