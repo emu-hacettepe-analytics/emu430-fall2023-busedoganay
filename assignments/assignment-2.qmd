@@ -93,7 +93,7 @@ wb <- rbind(worst, best)
 
 
 #Fav movie
-fav_movie <- "7. Kogustaki Mucize" 
+fav_movie <- "Yeralti" 
 movie <- turkish_movies[turkish_movies$Title == fav_movie, !(names(turkish_movies) %in% "Rank")]
 print(movie)
 #rat. avg.
