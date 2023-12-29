@@ -207,8 +207,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#assignment-1" id="toc-assignment-1" class="nav-link active" data-scroll-target="#assignment-1">Assignment 1</a>
   <ul class="collapse">
-  <li><a href="#a" id="toc-a" class="nav-link" data-scroll-target="#a">(a)</a></li>
-  <li><a href="#b" id="toc-b" class="nav-link" data-scroll-target="#b">(b)</a></li>
+  <li><a href="#a-summary" id="toc-a-summary" class="nav-link" data-scroll-target="#a-summary">(a) Summary</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#b-what-strategies-can-we-use-to-make-developing-tool-simultaneously-with-python-and-r-easier" id="toc-b-what-strategies-can-we-use-to-make-developing-tool-simultaneously-with-python-and-r-easier" class="nav-link" data-scroll-target="#b-what-strategies-can-we-use-to-make-developing-tool-simultaneously-with-python-and-r-easier">(b) What strategies can we use to make developing tool simultaneously with Python and R easier?</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -246,11 +247,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>My first assignment has two parts.</p>
-<section id="a" class="level2">
-<h2 class="anchored" data-anchor-id="a">(a)</h2>
+<section id="a-summary" class="level2">
+<h2 class="anchored" data-anchor-id="a-summary">(a) Summary</h2>
+<p>I choose RStudio Global 2022 Conference Talks and watched Developing Internal Tools for Multi-Lingual Teams. He gives examples about this subject using R and Python in Bumble application.</p>
 </section>
-<section id="b" class="level2">
-<h2 class="anchored" data-anchor-id="b">(b)</h2>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+</section>
+<section id="b-what-strategies-can-we-use-to-make-developing-tool-simultaneously-with-python-and-r-easier" class="level2">
+<h2 class="anchored" data-anchor-id="b-what-strategies-can-we-use-to-make-developing-tool-simultaneously-with-python-and-r-easier">(b) What strategies can we use to make developing tool simultaneously with Python and R easier?</h2>
+<p>Idea #1 Building identical generic functions</p>
+<p>print()</p>
+<p>summary()</p>
+<p>broom::tidy()</p>
+<p>in R</p>
+<p>say_hello &lt;- function(x) {</p>
+<p>UseMethod(“say_hello”)</p>
+<p>}</p>
+<p>say_hello.data.frame &lt;- function(x) {</p>
+<p>print(“Hello dataframe!”)</p>
+<p>}</p>
+<p>say_hello.default &lt;- function(x) {</p>
+<p>print(“Hello there!”)</p>
+<p>}</p>
+<p>in Python</p>
+<p>def say_hello(x)</p>
+<p>return”Hello there!”</p>
+<p>Idea #2 Identical error handling with classes</p>
+<p>in Python</p>
+<p>try:</p>
+<p>#some code goes here</p>
+<p>except FileNotFoundError:</p>
+<p>#code to handle FileNotFoundError</p>
+<p>in R</p>
+<p>stop(“This throws an error!”)</p>
+<p>#&gt; Error: This throws an error</p>
+<p>rlang::abort(“This throws an error!”)</p>
+<p>#&gt; Error:</p>
+<p>#&gt;! This throws an error!</p>
+<p>Idea #3 Creating your own internal wrappers</p>
+<p>Calling Python from R</p>
 
 
 </section>
