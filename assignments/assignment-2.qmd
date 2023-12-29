@@ -46,7 +46,7 @@ title <- r_imdb_before |> html_nodes('.ipc-title__text')
 title <- html_text(title)
 title <- tail(head(title,-1),-1)
 title <- str_split(title, " ", n=2)
-title <- unlist(lapply(title_names_b, function(x) {x[2]}))
+title <- unlist(lapply(title, function(x) {x[2]}))
 
 year_before <- r_imdb_before |> html_nodes('.dli-title-metadata-item:nth-child(1)')
 year_before <- html_text(year_before)
@@ -120,7 +120,7 @@ ggplot(data = turkish_movies, aes(x = Votes, y = Rating)) +
 
 correlation <- cor(turkish_movies$Duration, turkish_movies$Rating)
 cat("Correlation between Duration and Rating:", correlation, "\n")
-ggplot(data = turkish_movies, aes(x = Votes, y = Rating)) +
+ggplot(data = turkish_movies, aes(x = Duration, y = Rating)) +
   geom_point() +
   labs(x = "Duration", y = "Rating") +
   ggtitle("Scatterplot of Duration vs Rating")
